@@ -1,3 +1,24 @@
+function onSignIn(googleUser) {
+  // google Login
+  const id_token = googleUser.getAuthResponse().id_token;
+
+  $.ajax({
+    method: "POST",
+    url: "http://localhost:3000/user/googleLogin",
+    data: {
+      id_token,
+    },
+  })
+    .done((response) => {
+      localStorage.setItem("access_token", response.access_token);
+      showHomePage();
+      fatchDataTodos();
+    })
+    .fail((err) => {
+      console.log(err);
+    });
+}
+
 function showLoginPage() {
   // sebelum melakukan Login
   $("#form-login").fadeIn("slow");
@@ -51,11 +72,12 @@ function fatchDataTodos() {
         <div class="card mt-2">
           <div class="card-body">
             <div class="row">
-              <div class="col-8">
+              <div class="col-7">
                 ${element.title}
                 </div>
-                <div class="col-4">
-                <a href=""><button class="btn btn-outline-info">Edit</button></a>
+                <div class="ml-5 col-5">
+                <a href=""><button class="btn btn-outline-info">View</button></a>
+                <a href=""><button class="btn btn-outline-warning">Edit</button></a>
                 <a href=""><button class="btn btn-outline-danger">Delete</button></a>
               </div>
             </div>
@@ -144,6 +166,10 @@ $(document).ready(function () {
 
   $("#menu-logout").click(function () {
     localStorage.clear();
+    const auth2 = gapi.auth2.getAuthInstance(); // menghilngkan akses google
+    auth2.signOut().then(function () {
+      console.log("User signed out.");
+    });
     showLoginPage();
   });
 });

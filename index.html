@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-signin-client_id" content="189133294561-utui715332g8dqdgmfaq53qvfe168jgv.apps.googleusercontent.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap"
@@ -24,17 +25,6 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <div class="container">
         <a class="navbar-brand" href="#">Todo's Mu</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item" id="menu-login">
@@ -58,8 +48,8 @@
     <div id="form-login">
       <div class="container mt-5">
         <div class="row">
-          <div class="col-md-6 offset-md-3">
-            <div class="card mt-5" style="background-color: #f0f0f0">
+          <div class="col-md-4 offset-md-4 ">
+            <div class="card mt-5 " style="background-color: #f0f0f0">
               <div class="card-body">
                 <form id="login">
                   <center>
@@ -81,7 +71,12 @@
                       required
                     />
                   </div>
-                  <button type="submit" class="btn btn-primary">Login</button>
+                  <div class="container mt-4 mb-2">
+                    <div class="row row justify-content-md-center">
+                        <button type="submit" class="btn btn-primary col-3 offset-md-1">Login</button>
+                        <div class="g-signin2 col-6" data-onsuccess="onSignIn"></div>
+                    </div>
+                  </div>
                 </form>
               </div>
             </div>
@@ -94,7 +89,7 @@
     <div id="form-register">
     <div class="container mt-5">
       <div class="row">
-        <div class="col-md-6 offset-md-3">
+        <div class="col-md-4 offset-md-4">
           <div class="card mt-5" style="background-color: #f0f0f0">
             <div class="card-body">
               <form id="register">
@@ -143,9 +138,9 @@
     <!------------------------ Show All Todos ------------------------->
 
     <div class="container" id="todo-container">
-      <div class="row">
+      <div class="row ">
         <div class="col mt-5">
-          <div style=" height: 500px" class="row">
+          <div style=" height: 500px" class="row ">
             <div class="col-lg-6 col-sm-12" style="background-color: #f0f0f0;">
             <img src="./assets/pic_work.svg" alt="">
             </div>
@@ -153,6 +148,9 @@
             <center>
               <h3 class="mt-4" style="font-weight: bold; color: white">Todo List</h3>
               <hr>
+              <div class="d-grid gap-2">
+                <Button class="btn btn-warning" style="font-weight: bold; color: white">Add New</Button>
+              </div>
             </center>
 
             <!-- List Todo -->
@@ -180,6 +178,8 @@
       </div>
     </div>
 
+
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script
       src="https://code.jquery.com/jquery-3.6.0.min.js"
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="

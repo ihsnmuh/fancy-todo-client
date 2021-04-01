@@ -98,11 +98,39 @@ $(document).ready(function () {
         fatchDataTodos(); //jangan lupa ketika refresh panggil lagi datanya
       })
       .fail((err) => {
+        console.log(err); // error masih console
+      })
+      .always(() => {
+        $("#email-login").val("");
+        $("#password-login").val("");
+      });
+  });
+
+  $("#register").on("submit", function (event) {
+    event.preventDefault(); // biar ngga refresh page
+    const email = $("#email-register").val();
+    const username = $("#username-register").val();
+    const password = $("#password-register").val();
+
+    $.ajax({
+      method: "POST",
+      url: "http://localhost:3000/user/register",
+      data: {
+        email,
+        username,
+        password,
+      },
+    })
+      .done((response) => {
+        showLoginPage();
+      })
+      .fail((err) => {
         console.log(err);
       })
       .always(() => {
-        $("#email-login").val();
-        $("#password-login").val();
+        $("#email-register").val("");
+        $("#username-register").val("");
+        $("#password-register").val("");
       });
   });
 

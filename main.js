@@ -3,6 +3,7 @@ function showLoginPage() {
   $("#form-login").fadeIn("slow");
   $("#form-register").hide();
   $("#todo-container").hide();
+  // batas menu
   $("#menu-login").show();
   $("#menu-register").show();
   $("#menu-home").hide();
@@ -14,6 +15,7 @@ function showRegisterPage() {
   $("#form-login").hide();
   $("#form-register").fadeIn("slow");
   $("#todo-container").hide();
+  // batas menu
   $("#menu-login").show();
   $("#menu-register").show();
   $("#menu-home").hide();
@@ -25,6 +27,7 @@ function showHomePage() {
   $("#form-login").hide();
   $("#form-register").hide();
   $("#todo-container").fadeIn("slow");
+  // batas menu
   $("#menu-login").hide();
   $("#menu-register").hide();
   $("#menu-home").show();
@@ -71,7 +74,7 @@ function fatchDataTodos() {
 $(document).ready(function () {
   if (localStorage.getItem("access_token")) {
     showHomePage();
-    fatchDataTodos();
+    fatchDataTodos(); //ketika di refresh
   } else {
     showLoginPage();
   }
@@ -109,5 +112,10 @@ $(document).ready(function () {
 
   $("#menu-register").click(function () {
     showRegisterPage();
+  });
+
+  $("#menu-logout").click(function () {
+    localStorage.clear();
+    showLoginPage();
   });
 });

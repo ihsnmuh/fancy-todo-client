@@ -113,6 +113,7 @@ function onSignIn(googleUser) {
       localStorage.setItem("access_token", response.access_token);
       showHomePage();
       fatchDataTodos();
+      notifSuccess("Login");
     })
     .fail((err) => {
       console.log(err);
@@ -204,29 +205,42 @@ function updateTodosById(event, id) {
     .done((response) => {
       showHomePage();
       fatchDataTodos();
+      notifSuccess("Update Todo");
     })
     .fail((err) => {
-      console.log(err);
+      console.log(err.name);
     });
 }
 
 function deleteTodosById(event, id) {
   event.preventDefault();
-
-  $.ajax({
-    method: "DELETE",
-    url: `http://localhost:3000/todos/${id}`,
-    headers: {
-      access_token: localStorage.getItem("access_token"),
-    },
-  })
-    .done((response) => {
-      showHomePage();
-      fatchDataTodos();
-    })
-    .fail((err) => {
-      console.log(err);
-    });
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire("Deleted!", "Your file has been deleted.", "success");
+      $.ajax({
+        method: "DELETE",
+        url: `http://localhost:3000/todos/${id}`,
+        headers: {
+          access_token: localStorage.getItem("access_token"),
+        },
+      })
+        .done((response) => {
+          showHomePage();
+          fatchDataTodos();
+        })
+        .fail((err) => {
+          console.log(err);
+        });
+    }
+  });
 }
 
 function viewTodosById(event, id) {
@@ -339,6 +353,44 @@ function fatchDataTodos() {
     });
 }
 
+// Batas function Notif ===========================================
+function notifSuccess(text) {
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
+
+  Toast.fire({
+    icon: "success",
+    title: `${text} is successfully`,
+  });
+}
+
+function notifFailed(text) {
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
+
+  Toast.fire({
+    icon: "error",
+    title: `${text} is failed!`,
+  });
+}
 // Batas Fuction =================================================================
 
 $(document).ready(function () {
@@ -367,9 +419,18 @@ $(document).ready(function () {
         localStorage.setItem("access_token", response.access_token);
         showHomePage();
         fatchDataTodos(); //jangan lupa ketika refresh panggil lagi datanya
+        notifSuccess("Login");
       })
       .fail((err) => {
         console.log(err); // error masih console
+        if (err.status === 400) {
+          Swal.fire({
+            title: "Invalid Email / Password!",
+            text: "Enter the correct Email / Password",
+            icon: "error",
+            confirmButtonText: "Ok",
+          });
+        }
       })
       .always(() => {
         $("#email-login").val("");
@@ -394,6 +455,7 @@ $(document).ready(function () {
     })
       .done((response) => {
         showLoginPage();
+        notifSuccess("Register");
       })
       .fail((err) => {
         console.log(err);
@@ -428,6 +490,7 @@ $(document).ready(function () {
       .done((response) => {
         showHomePage();
         fatchDataTodos();
+        notifSuccess("Add New Todo");
       })
       .fail((err) => {
         console.log(err);
@@ -456,6 +519,7 @@ $(document).ready(function () {
       console.log("User signed out.");
     });
     showLoginPage();
+    notifSuccess("Logout");
   });
 
   $("#btn-add-todo").click(function () {

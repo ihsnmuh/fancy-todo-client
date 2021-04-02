@@ -1,0 +1,24 @@
+{
+  "name": "fancy-todo-client",
+  "version": "1.0.0",
+  "description": "Client site Fancy todo",
+  "main": "main.js",
+  "dependencies": {
+    "egalink-toasty.js": "^1.5.5",
+    "sweetalert2": "^10.15.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ihsnmuh/fancy-todo-client.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ihsnmuh/fancy-todo-client/issues"
+  },
+  "homepage": "https://github.com/ihsnmuh/fancy-todo-client#readme"
+}

@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="google-signin-client_id" content="189133294561-utui715332g8dqdgmfaq53qvfe168jgv.apps.googleusercontent.com">
+    <meta
+      name="google-signin-client_id"
+      content="189133294561-utui715332g8dqdgmfaq53qvfe168jgv.apps.googleusercontent.com"
+    />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap"
@@ -21,10 +24,10 @@
   </head>
 
   <body>
-    <!------------------------------------- Navbar ------------------------------------------------->
+    <!------------------------------------- Navbar ------------------------------------------>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <div class="container">
-        <a class="navbar-brand" href="#">Todo's Mu</a>
+        <a class="navbar-brand" href="#" onclick="showHomePage()">Todo's Mu</a>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item" id="menu-login">
@@ -34,7 +37,7 @@
               <a class="nav-link" href="#">Register</a>
             </li>
             <li class="nav-item" id="menu-home">
-              <a class="nav-link" href="#">Home</a>
+              <a class="nav-link" href="#" onclick="showHomePage()">Home</a>
             </li>
             <li class="nav-item" id="menu-logout">
               <a class="nav-link" href="#">Logout</a>
@@ -48,19 +51,24 @@
     <div id="form-login">
       <div class="container mt-5">
         <div class="row">
-          <div class="col-md-4 offset-md-4 ">
-            <div class="card mt-5 " style="background-color: #f0f0f0">
+          <div class="col-md-4 offset-md-4">
+            <div class="card mt-5" style="background-color: #f0f0f0">
               <div class="card-body">
                 <form id="login">
                   <center>
                     <h3 class="mb-3" style="font-weight: bold; color: #0d6efd">
                       Login
                     </h3>
-                    <hr style="border: 1px solid black;">
+                    <hr style="border: 1px solid black" />
                   </center>
                   <div class="mb-3">
                     <label for="email" class="form-label">Email address:</label>
-                    <input type="email" class="form-control" id="email-login" required/>
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="email-login"
+                      required
+                    />
                   </div>
                   <div class="mb-3">
                     <label for="password" class="form-label">Password:</label>
@@ -73,8 +81,16 @@
                   </div>
                   <div class="container mt-4 mb-2">
                     <div class="row row justify-content-md-center">
-                        <button type="submit" class="btn btn-primary col-3 offset-md-1">Login</button>
-                        <div class="g-signin2 col-6" data-onsuccess="onSignIn"></div>
+                      <button
+                        type="submit"
+                        class="btn btn-primary col-3 offset-md-1"
+                      >
+                        Login
+                      </button>
+                      <div
+                        class="g-signin2 col-6"
+                        data-onsuccess="onSignIn"
+                      ></div>
                     </div>
                   </div>
                 </form>
@@ -85,76 +101,88 @@
       </div>
     </div>
 
-    <!---------------------------------------- Register -------------------------------------->
+    <!---------------------------------------- Register ------------------------------------->
     <div id="form-register">
-    <div class="container mt-5">
-      <div class="row">
-        <div class="col-md-4 offset-md-4">
-          <div class="card mt-5" style="background-color: #f0f0f0">
-            <div class="card-body">
-              <form id="register">
-                <center>
-                  <h3 class="mb-3" style="font-weight: bold; color: #0d6efd">
-                    Register
-                  </h3>
-                  <hr style="border: 1px solid black;">
-                </center>
-                <div class="mb-3">
-                  <label for="email" class="form-label">Email address:</label>
-                  <input
-                    type="email"
-                    class="form-control"
-                    id="email-register"
-                    required
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="username" class="form-label">Username:</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="username-register"
-                    required
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="password" class="form-label">Password:</label>
-                  <input
-                    type="password"
-                    class="form-control"
-                    id="password-register"
-                    required
-                  />
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </form>
+      <div class="container mt-5">
+        <div class="row">
+          <div class="col-md-4 offset-md-4">
+            <div class="card mt-5" style="background-color: #f0f0f0">
+              <div class="card-body">
+                <form id="register">
+                  <center>
+                    <h3 class="mb-3" style="font-weight: bold; color: #0d6efd">
+                      Register
+                    </h3>
+                    <hr style="border: 1px solid black" />
+                  </center>
+                  <div class="mb-3">
+                    <label for="email" class="form-label">Email address:</label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="email-register"
+                      required
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="username" class="form-label">Username:</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="username-register"
+                      required
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="password" class="form-label">Password:</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="password-register"
+                      required
+                    />
+                  </div>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    </div>
 
     <!------------------------ Show All Todos ------------------------->
 
     <div class="container" id="todo-container">
-      <div class="row ">
+      <div class="row">
         <div class="col mt-5">
-          <div style=" height: 500px" class="row ">
-            <div class="col-lg-6 col-sm-12" style="background-color: #f0f0f0;">
-            <img src="./assets/pic_work.svg" alt="">
+          <div style="height: 500px" class="row">
+            <div class="col-lg-6 col-sm-12" style="background-color: #f0f0f0">
+              <img src="./assets/pic_work.svg" alt="" />
             </div>
-            <div class="col-lg-6 col-sm-12" style="background-color: #0D6EFD;">
-            <center>
-              <h3 class="mt-4" style="font-weight: bold; color: white">Todo List</h3>
-              <hr>
-              <div class="d-grid gap-2">
-                <Button class="btn btn-warning" style="font-weight: bold; color: white">Add New</Button>
-              </div>
-            </center>
+            <div class="col-lg-6 col-sm-12" style="background-color: #0d6efd">
+              <center>
+                <h3
+                  class="mt-4"
+                  id="titleName"
+                  style="font-weight: bold; color: white"
+                >
+                  Todo List
+                </h3>
+                <hr />
+                <div class="d-grid gap-2">
+                  <button
+                    class="btn btn-warning"
+                    id="btn-add-todo"
+                    style="font-weight: bold; color: white"
+                  >
+                    Add New
+                  </button>
+                </div>
+              </center>
 
-            <!-- List Todo -->
-              <div class="" id="todos">
+              <!-- List Todo -->
+              <div class="mb-3" id="todos">
                 <!-- <div class="card mt-2">
                   <div class="card-body">
                     <div class="row">
@@ -169,15 +197,217 @@
                   </div>
                 </div> -->
               </div>
-
-
             </div>
           </div>
         </div>
       </div>
+    </div>
+
+    <!------------------------ Add Form Todo ------------------------->
+
+    <div class="container" id="form-addTodos">
+      <div class="row">
+        <div class="col mt-5">
+          <div style="height: 500px" class="row">
+            <div class="col-lg-6 col-sm-12" style="background-color: #f0f0f0">
+              <img src="./assets/pic_add.svg" alt="" />
+            </div>
+            <div class="col-lg-6 col-sm-12" style="background-color: #ffc107">
+              <center>
+                <h3 class="mt-4" style="font-weight: bold; color: white">
+                  New Todo
+                </h3>
+                <hr />
+              </center>
+              <form id="add-todo">
+                <div class="mb-3 mt-3">
+                  <label
+                    for="title-form-addTodo"
+                    class="form-label"
+                    style="font-weight: bold; color: white"
+                    >Title :</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="title-form-addTodo"
+                    placeholder="Enter your todo title here.."
+                    required
+                  />
+                </div>
+                <div class="row">
+                  <div class="mb-3 col-6">
+                    <label
+                      for="status-form-addTodo"
+                      class="form-label"
+                      style="font-weight: bold; color: white"
+                      >Status :</label
+                    >
+                    <select
+                      id="status-form-addTodo"
+                      class="form-select"
+                      required
+                    >
+                      <option selected>--- Choose Status ---</option>
+                      <option value="notFinished">Not Finished</option>
+                      <option value="ongoing">On going</option>
+                      <option value="finished">Finished</option>
+                    </select>
+                  </div>
+                  <div class="mb-3 col-6">
+                    <label
+                      for="status-form-addTodo"
+                      class="form-label"
+                      style="font-weight: bold; color: white"
+                      >Due Date:
+                    </label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="date-form-addTodo"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label
+                    for="description-form-addTodo"
+                    class="form-label"
+                    style="font-weight: bold; color: white"
+                    >Description :</label
+                  >
+                  <textarea
+                    class="form-control"
+                    id="description-form-addTodo"
+                    rows="3"
+                    placeholder="Enter your todo description here.."
+                    required
+                  ></textarea>
+                </div>
+                <div class="d-grid gap-2">
+                  <button
+                    class="btn btn-primary"
+                    type="submit"
+                    style="font-weight: bold; color: white"
+                  >
+                    Add New Todo !
+                  </button>
+                  <button
+                    class="btn btn-danger"
+                    onclick="showHomePage()"
+                    style="font-weight: bold; color: white"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
+    <!------------------------ Edit Form Todo ------------------------->
+
+    <div class="container" id="form-editTodos">
+      <div class="row">
+        <div class="col mt-5">
+          <div style="height: 500px" class="row">
+            <div class="col-lg-6 col-sm-12" style="background-color: #f0f0f0">
+              <img src="./assets/pic_edit.svg" alt="" />
+            </div>
+            <div class="col-lg-6 col-sm-12" style="background-color: #20c997">
+              <center>
+                <h3 class="mt-4" style="font-weight: bold; color: white">
+                  Edit Todo
+                </h3>
+                <hr />
+              </center>
+              <div class="editTodos">
+                <!-- Form Edit Todos -->
+                <!-- <form id="edit-todo">
+                  <div class="mb-3 mt-3">
+                    <label for="title-form-editTodo" class="form-label" style="font-weight: bold; color: white">Title :</label>
+                    <input type="text" class="form-control" id="title-form-editTodo" placeholder="Enter your todo title here.." required>
+                  </div>
+                  <div class="row">
+                    <div class="mb-3 col-6">
+                      <label for="status-form-editTodo" class="form-label" style="font-weight: bold; color: white">Status :</label>
+                      <select id="status-form-editTodo" class="form-select" required>
+                        <option selected>--- Choose Status ---</option>
+                        <option>Ongoing</option>
+                        <option>Done</option>
+                      </select>
+                    </div>
+                    <div class="mb-3 col-6">
+                      <label for="status-form-editTodo" class="form-label" style="font-weight: bold; color: white">Due Date: </label>
+                      <input type="date" class="form-control" id="date-form-editTodo" required>
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="description-form-editTodo" class="form-label" style="font-weight: bold; color: white">Description :</label>
+                    <textarea class="form-control" id="description-form-editTodo" rows="3" placeholder="Enter your todo description here.." required></textarea>
+                  </div>
+                  <div class="d-grid gap-2">
+                    <Button class="btn btn-warning" type="submit" style="font-weight: bold; color: white">Update Todo !</Button>
+                    <Button class="btn btn-danger" onclick="showHomePage()" style="font-weight: bold; color: white">Back to your Todos</Button>
+                  </div>
+                </form> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!------------------------ View Todos ------------------------->
+
+    <div class="container" id="form-viewTodos">
+      <div class="row">
+        <div class="col mt-5">
+          <div style="height: 500px" class="row">
+            <div class="col-lg-6 col-sm-12" style="background-color: #f0f0f0">
+              <img src="./assets/pic_work.svg" alt="" />
+            </div>
+            <div class="col-lg-6 col-sm-12" style="background-color: #0d6efd">
+              <center>
+                <h3 class="mt-4" style="font-weight: bold; color: white">
+                  Details Your Todo
+                </h3>
+                <hr />
+              </center>
+
+              <!-- List Todo -->
+              <div class="mb-3" id="todo-detail">
+                <!-- <div class="card mt-2">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-8">
+                        This is Todo Example from HTML
+                      </div>
+                      <div class="col-4">
+                        <a href=""><button class="btn btn-outline-info">Edit</button></a>
+                        <a href=""><button class="btn btn-outline-danger">Delete</button></a>
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
+              </div>
+              <div class="d-grid gap-2">
+                <button
+                  class="btn btn-warning"
+                  id="btn-add-todo"
+                  style="font-weight: bold; color: white"
+                  onclick="showHomePage()"
+                >
+                  Back
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script

@@ -301,6 +301,45 @@ function viewTodosById(event, id) {
     });
 }
 
+function patchTodosById(event, id) {
+  event.preventDefault();
+  let statusChange = "";
+  $.ajax({
+    method: "GET",
+    url: `http://localhost:3000/todos/${id}`,
+    headers: {
+      access_token: localStorage.getItem("access_token"),
+    },
+  })
+    .done((response) => {
+      if (response.status == "notFinished") {
+        statusChange = "finished";
+      } else if (response.status == "ongoing") {
+        statusChange = "finished";
+      } else {
+        statusChange = "finished";
+      }
+
+      $.ajax({
+        method: "PATCH",
+        url: `http://localhost:3000/todos/${id}`,
+        headers: {
+          access_token: localStorage.getItem("access_token"),
+        },
+        data: {
+          status: statusChange,
+        },
+      }).done(() => {
+        showHomePage();
+        fatchDataTodos();
+        notifSuccess("Update Status Todo");
+      });
+    })
+    .fail((err) => {
+      console.log(err);
+    });
+}
+
 function fatchDataTodos() {
   // memunculkan seluruh data Todos
   $.ajax({
@@ -334,13 +373,14 @@ function fatchDataTodos() {
         <div class="card mt-2">
           <div class="card-body" style="${selected}">
             <div class="row">
-              <div class="col-7">
+              <div class="col-6">
                 ${element.title} ${statusNew}
                 </div>
-                <div class="ml-5 col-5">
-                <button class="btn btn${button}-info" onclick="viewTodosById(event,${element.id})">View</button>
-                <button class="btn btn${button}-warning" onclick="editTodosById(event,${element.id})" >Edit</button>
-                <button class="btn btn${button}-danger" onclick="deleteTodosById(event,${element.id})" >Delete</button>
+                <div class="ml-5 col-6">
+                <button class="btn btn${button}-success btn-sm" onclick="patchTodosById(event,${element.id})">Done</button>
+                <button class="btn btn${button}-info btn-sm" onclick="viewTodosById(event,${element.id})">View</button>
+                <button class="btn btn${button}-warning btn-sm" onclick="editTodosById(event,${element.id})">Edit</button>
+                <button class="btn btn${button}-danger btn-sm" onclick="deleteTodosById(event,${element.id})" >Delete</button>
               </div>
             </div>
           </div>

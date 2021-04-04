@@ -117,6 +117,7 @@ function onSignIn(googleUser) {
     })
     .fail((err) => {
       console.log(err);
+      notifError(err.responseJSON.message);
     });
 }
 
@@ -179,6 +180,7 @@ function editTodosById(event, id) {
     })
     .fail((err) => {
       console.log(err);
+      notifError(err.responseJSON.message);
     });
 }
 
@@ -209,6 +211,7 @@ function updateTodosById(event, id) {
     })
     .fail((err) => {
       console.log(err.name);
+      notifError(err.responseJSON.message);
     });
 }
 
@@ -238,6 +241,7 @@ function deleteTodosById(event, id) {
         })
         .fail((err) => {
           console.log(err);
+          notifError(err.responseJSON.message);
         });
     }
   });
@@ -298,6 +302,7 @@ function viewTodosById(event, id) {
     })
     .fail((err) => {
       console.log(err);
+      notifError(err.responseJSON.message);
     });
 }
 
@@ -336,7 +341,7 @@ function patchTodosById(event, id) {
       });
     })
     .fail((err) => {
-      console.log(err);
+      notifError(err.responseJSON.message);
     });
 }
 
@@ -390,6 +395,7 @@ function fatchDataTodos() {
     })
     .fail((err) => {
       console.log(err);
+      notifError(err.responseJSON.message);
     });
 }
 
@@ -429,6 +435,25 @@ function notifFailed(text) {
   Toast.fire({
     icon: "error",
     title: `${text} is failed!`,
+  });
+}
+
+function notifError(message) {
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
+
+  Toast.fire({
+    icon: "error",
+    title: `${message}`,
   });
 }
 // Batas Fuction =================================================================
@@ -498,7 +523,7 @@ $(document).ready(function () {
         notifSuccess("Register");
       })
       .fail((err) => {
-        console.log(err);
+        notifError(err.responseJSON.message);
       })
       .always(() => {
         $("#email-register").val("");
@@ -533,13 +558,14 @@ $(document).ready(function () {
         notifSuccess("Add New Todo");
       })
       .fail((err) => {
-        console.log(err);
+        notifError(err.responseJSON.message);
+        // console.log(err.responseJSON.message);
       })
       .always(() => {
-        $("#title-form-addTodo").val(" ");
-        $("#description-form-addTodo").val(" ");
-        $("#date-form-addTodo").val(" ");
-        $("#status-form-addTodo").val();
+        $("#title-form-addTodo").val("");
+        $("#description-form-addTodo").val("");
+        $("#date-form-addTodo").val("");
+        $("#status-form-addTodo").val("");
       });
   });
 

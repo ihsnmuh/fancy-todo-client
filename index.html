@@ -39,6 +39,11 @@
             <li class="nav-item" id="menu-home">
               <a class="nav-link" href="#" onclick="showHomePage()">Home</a>
             </li>
+            <li class="nav-item" id="menu-randomActivity">
+              <a class="nav-link" href="#" id="random-activity"
+                >Get Activity Ideas</a
+              >
+            </li>
             <li class="nav-item" id="menu-logout">
               <a class="nav-link" href="#">Logout</a>
             </li>
@@ -394,6 +399,58 @@
                 </div> -->
               </div>
               <div class="d-grid gap-2">
+                <button
+                  class="btn btn-warning"
+                  id="btn-add-todo"
+                  style="font-weight: bold; color: white"
+                  onclick="showHomePage()"
+                >
+                  Back
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!------------------------ Random Activity ------------------------->
+
+    <div class="container" id="randomActivity">
+      <div class="row">
+        <div class="col mt-5">
+          <div style="height: 500px" class="row">
+            <div class="col-lg-6 col-sm-12" style="background-color: #f0f0f0">
+              <img src="./assets/pic_work.svg" alt="" />
+            </div>
+            <div class="col-lg-6 col-sm-12" style="background-color: #0d6efd">
+              <center>
+                <h3 class="mt-4" style="font-weight: bold; color: white">
+                  Get Random Activity
+                </h3>
+                <hr />
+              </center>
+
+              <!-- List Todo -->
+              <div class="mb-3">
+                <div class="card mt-2">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-12" id="activity-list">
+                        <!-- This is Todo Example from HTML -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="d-grid gap-2">
+                <button
+                  class="btn btn-success"
+                  id="btn-add-activity"
+                  style="font-weight: bold; color: white"
+                >
+                  Get Activity
+                </button>
                 <button
                   class="btn btn-warning"
                   id="btn-add-todo"

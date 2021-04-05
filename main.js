@@ -7,12 +7,14 @@ function showLoginPage() {
   $("#form-addTodos").hide();
   $("#form-editTodos").hide();
   $("#form-viewTodos").hide();
+  $("#randomActivity").hide();
 
   // batas menu
   $("#menu-login").show();
   $("#menu-register").show();
   $("#menu-home").hide();
   $("#menu-logout").hide();
+  $("#menu-randomActivity").hide();
 }
 
 function showRegisterPage() {
@@ -24,12 +26,14 @@ function showRegisterPage() {
   $("#form-addTodos").hide();
   $("#form-editTodos").hide();
   $("#form-viewTodos").hide();
+  $("#randomActivity").hide();
 
   // batas menu
   $("#menu-login").show();
   $("#menu-register").show();
   $("#menu-home").hide();
   $("#menu-logout").hide();
+  $("#menu-randomActivity").hide();
 }
 
 function showHomePage() {
@@ -41,12 +45,14 @@ function showHomePage() {
   $("#form-addTodos").hide();
   $("#form-editTodos").hide();
   $("#form-viewTodos").hide();
+  $("#randomActivity").hide();
 
   // batas menu
   $("#menu-login").hide();
   $("#menu-register").hide();
   $("#menu-home").show();
   $("#menu-logout").show();
+  $("#menu-randomActivity").show();
 }
 
 function showAddTodoPage() {
@@ -58,12 +64,14 @@ function showAddTodoPage() {
   $("#form-addTodos").fadeIn("slow");
   $("#form-editTodos").hide();
   $("#form-viewTodos").hide();
+  $("#randomActivity").hide();
 
   // batas menu
   $("#menu-login").hide();
   $("#menu-register").hide();
   $("#menu-home").show();
   $("#menu-logout").show();
+  $("#menu-randomActivity").show();
 }
 
 function showEditTodoPage() {
@@ -75,11 +83,14 @@ function showEditTodoPage() {
   $("#form-addTodos").hide();
   $("#form-editTodos").fadeIn("slow");
   $("#form-viewTodos").hide();
+  $("#randomActivity").hide();
+
   // batas menu
   $("#menu-login").hide();
   $("#menu-register").hide();
   $("#menu-home").show();
   $("#menu-logout").show();
+  $("#menu-randomActivity").show();
 }
 
 function showViewTodoPage() {
@@ -91,11 +102,33 @@ function showViewTodoPage() {
   $("#form-addTodos").hide();
   $("#form-editTodos").hide();
   $("#form-viewTodos").show();
+  $("#randomActivity").hide();
+
   // batas menu
   $("#menu-login").hide();
   $("#menu-register").hide();
   $("#menu-home").show();
   $("#menu-logout").show();
+  $("#menu-randomActivity").show();
+}
+
+function showRandomActivity() {
+  console.log("Form View Todo");
+  // setelah melakukan login
+  $("#form-login").hide();
+  $("#form-register").hide();
+  $("#todo-container").hide();
+  $("#form-addTodos").hide();
+  $("#form-editTodos").hide();
+  $("#form-viewTodos").hide();
+  $("#randomActivity").show();
+
+  // batas menu
+  $("#menu-login").hide();
+  $("#menu-register").hide();
+  $("#menu-home").show();
+  $("#menu-logout").show();
+  $("#menu-randomActivity").show();
 }
 
 function onSignIn(googleUser) {
@@ -569,9 +602,33 @@ $(document).ready(function () {
       });
   });
 
+  $("#btn-add-activity").on("click", function (event) {
+    $("#activity-list").empty();
+    $.ajax({
+      method: "GET",
+      url: `http://localhost:3000/todos/activity`,
+      headers: {
+        access_token: localStorage.getItem("access_token"),
+      },
+    })
+      .done((response) => {
+        $("#activity-list").append(`
+        <i>"${response.result}"</i>
+        `);
+      })
+      .fail((err) => {
+        notifError(err.responseJSON.message);
+      });
+  });
+
   // Batas Button action Pindah
   $("#menu-login").click(function () {
     showLoginPage();
+  });
+
+  $("#menu-randomActivity").click(function () {
+    showRandomActivity();
+    $("#activity-list").empty();
   });
 
   $("#menu-register").click(function () {

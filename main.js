@@ -1,3 +1,5 @@
+const baseUrl = "https://fancy-todosmu.herokuapp.com";
+
 function showLoginPage() {
   console.log("Login");
   // sebelum melakukan Login
@@ -137,7 +139,7 @@ function onSignIn(googleUser) {
 
   $.ajax({
     method: "POST",
-    url: "http://localhost:3000/user/googleLogin",
+    url: baseUrl + "/user/googleLogin",
     data: {
       id_token,
     },
@@ -160,7 +162,7 @@ function editTodosById(event, id) {
 
   $.ajax({
     method: "GET",
-    url: `http://localhost:3000/todos/${id}`,
+    url: `${baseUrl}/todos/${id}`,
     headers: {
       access_token: localStorage.getItem("access_token"),
     },
@@ -226,7 +228,7 @@ function updateTodosById(event, id) {
 
   $.ajax({
     method: "PUT",
-    url: `http://localhost:3000/todos/${id}`,
+    url: `${baseUrl}/todos/${id}`,
     data: {
       title,
       description,
@@ -263,7 +265,7 @@ function deleteTodosById(event, id) {
       Swal.fire("Deleted!", "Your file has been deleted.", "success");
       $.ajax({
         method: "DELETE",
-        url: `http://localhost:3000/todos/${id}`,
+        url: `${baseUrl}/todos/${id}`,
         headers: {
           access_token: localStorage.getItem("access_token"),
         },
@@ -286,7 +288,7 @@ function viewTodosById(event, id) {
 
   $.ajax({
     method: "GET",
-    url: `http://localhost:3000/todos/${id}`,
+    url: `${baseUrl}/todos/${id}`,
     headers: {
       access_token: localStorage.getItem("access_token"),
     },
@@ -344,7 +346,7 @@ function patchTodosById(event, id) {
   let statusChange = "";
   $.ajax({
     method: "GET",
-    url: `http://localhost:3000/todos/${id}`,
+    url: `${baseUrl}/todos/${id}`,
     headers: {
       access_token: localStorage.getItem("access_token"),
     },
@@ -360,7 +362,7 @@ function patchTodosById(event, id) {
 
       $.ajax({
         method: "PATCH",
-        url: `http://localhost:3000/todos/${id}`,
+        url: `${baseUrl}/todos/${id}`,
         headers: {
           access_token: localStorage.getItem("access_token"),
         },
@@ -382,7 +384,7 @@ function fatchDataTodos() {
   // memunculkan seluruh data Todos
   $.ajax({
     method: "GET",
-    url: "http://localhost:3000/todos",
+    url: baseUrl + "/todos",
     headers: {
       access_token: localStorage.getItem("access_token"),
     },
@@ -507,7 +509,7 @@ $(document).ready(function () {
 
     $.ajax({
       method: "POST",
-      url: "http://localhost:3000/user/login",
+      url: baseUrl + "/user/login",
       data: {
         email,
         password,
@@ -544,7 +546,7 @@ $(document).ready(function () {
 
     $.ajax({
       method: "POST",
-      url: "http://localhost:3000/user/register",
+      url: baseUrl + "/user/register",
       data: {
         email,
         username,
@@ -574,7 +576,7 @@ $(document).ready(function () {
 
     $.ajax({
       method: "POST",
-      url: "http://localhost:3000/todos",
+      url: baseUrl + "/todos",
       data: {
         title,
         description,
@@ -606,7 +608,7 @@ $(document).ready(function () {
     $("#activity-list").empty();
     $.ajax({
       method: "GET",
-      url: `http://localhost:3000/todos/activity`,
+      url: `${baseUrl}/todos/activity`,
       headers: {
         access_token: localStorage.getItem("access_token"),
       },
